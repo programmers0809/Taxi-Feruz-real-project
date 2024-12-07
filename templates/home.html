@@ -85,11 +85,13 @@
 				</div>
 				<div class="clear"></div>
 			</header>
-			<div class="slider_wrapper ">
+			<div class="slider_wrapper">
 				<div id="camera_wrap" class="">
-					<div data-src="{% static 'images/slide.jpg' %}" ></div>
-					<div data-src="{% static 'images/slide1.jpg' %}" ></div>
-					<div data-src="{% static 'images/slide2.jpg' %}"></div>
+					{% for image in carousel_images %}
+						<div data-src="{{ image.image.url }}" alt="{{ image.caption }}">
+							<p>{{ image.caption }}</p>
+						</div>
+					{% endfor %}
 				</div>
 			</div>
 			<div class="container_12">
@@ -140,7 +142,7 @@
 			<div class="c_phone">
 				<div class="container_12">
 					<div class="grid_12">
-						<div class="fa fa-phone"></div>+ 1800 559 6580
+						<div class="fa fa-phone"></div>+ 99850664587
 						<span>ORDER NOW!</span>
 					</div>
 					<div class="clear"></div>
@@ -148,73 +150,113 @@
 			</div>
 <!--==============================Content=================================-->
 <div class="content">
-    <div class="container_12">
-        <div class="grid_5">
-            <h3>Booking Form</h3>
-            <form id="bookingForm" method="post">
-                {% csrf_token %}
-                <div class="fl1">
-                    <div class="tmInput">
-                        {{ booking_form.name }}
-                    </div>
-                    <div class="tmInput">
-                        {{ booking_form.from_location }}
-                    </div>
-                </div>
-                <div class="fl1">
-                    <div class="tmInput">
-                        {{ booking_form.email }}
-                    </div>
-                    <div class="tmInput mr0">
-                        {{ booking_form.to_location }}
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <strong>Time</strong>
-                <div class="tmInput">
-                    {{ booking_form.time }}
-                </div>
-                <div class="clear"></div>
-                <strong>Date</strong>
-                <label class="tmDatepicker">
-                    {{ booking_form.date }}
-                </label>
-                <div class="clear"></div>
-                <div class="tmRadio">
-                    <p>Comfort</p>
-                    {{ booking_form.comfort }}
-                </div>
-                <div class="clear"></div>
-                <div class="fl1 fl2">
-                    <em>Kattalar</em>
-                    {{ booking_form.adults }}
-                    <div class="clear height1"></div>
-                </div>
-                <div class="fl1 fl2">
-                    <em>Bolalar</em>
-                    {{ booking_form.children }}
-                </div>
-                <div class="clear"></div>
-                <div class="tmTextarea">
-                    {{ booking_form.message }}
-                </div>
-                <button type="submit" class="btn">Jo'natish</button>
-            </form>
-            {% if message %}
-                <p>{{ message }}</p>
-            {% endif %}
-        </div>
-        <div class="grid_6 prefix_1">
-            {% for category in category_list %}
-                <a href="{% url 'cars_page' %}" class="type">
-                    <img src="{{ category.image.url }}" alt="">
-                    <span class="type_caption">{{ category.name }}</span>
-                </a>
-            {% endfor %}
-        </div>
-        <div class="clear"></div>
-    </div>
-</div>
+	<div class="container_12">
+		<div class="grid_5">
+			<h3>Booking Form</h3>
+			<form id="bookingForm" method="post">
+				{% csrf_token %}
+				<div class="fl1">
+					<div class="tmInput">
+						{{ booking_form.name }}
+					</div>
+					<div class="tmInput">
+						{{ booking_form.from_location }}
+					</div>
+				</div>
+				<div class="fl1">
+					<div class="tmInput">
+						{{ booking_form.email }}
+					</div>
+					<div class="tmInput mr0">
+						{{ booking_form.to_location }}
+					</div>
+				</div>
+				<div class="clear"></div>
+	
+				<div class="tmInput">
+					{{ booking_form.time }}
+				</div>
+				<div class="clear"></div>
+	
+				<label class="tmDatepicker">
+					{{ booking_form.date }}
+				</label>
+				<div class="clear"></div>
+				
+				<div class="tmRadio">
+					{{ booking_form.comfort }}
+				</div>
+	
+				<div class="clear"></div>
+				<div class="fl1 fl2">
+					<em>Kattalar</em>
+					{{ booking_form.adults }}
+					<div class="clear height1"></div>
+				</div>
+				<div class="fl1 fl2">
+					<em>Bolalar</em>
+					{{ booking_form.children }}
+				</div>
+				<div class="clear"></div>
+				<div class="tmTextarea">
+					{{ booking_form.message }}
+				</div>
+				<button type="submit" class="btn">Jo'natish</button>
+			</form>
+	
+			{% if message %}
+				<p>{{ message }}</p>
+			{% endif %}
+		</div>
+	
+		<!-- Category List Section -->
+		<div class="grid_6 prefix_1">
+			{% for category in category_list %}
+				<a href="{% url 'cars_page' %}" class="type">
+					<img src="{{ category.image.url }}" alt="{{ category.name }}">
+					<span class="type_caption">{{ category.name }}</span>
+				</a>
+			{% endfor %}
+		</div>
+	
+		<div class="clear"></div>
+	
+		<!-- Image Section -->
+		<div class="car-image-section">
+			<!-- <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/2022_Kia_Sportage_GT-Line_ISG_HEV_Automatic_1.6_Front.jpg" alt="Kia Sportage" class="responsive-img"> -->
+		</div>
+	</div>
+	
+	<style>
+		/* Make the car image responsive */
+		.responsive-img {
+			width: 100%;  /* Makes the image take the full width of its container */
+			max-width: 800px;  /* Set a max-width for the image */
+			height: auto;  /* Maintain aspect ratio */
+			display: block;
+			margin: 20px auto;  /* Centers the image */
+		}
+	
+		/* Style for the category list section */
+		.grid_6 {
+			margin-top: 30px;  /* Ensures there's space between the form and categories */
+		}
+	
+		.tmRadio {
+			font-size: 16px; /* Adjust the font size */
+			color: #333; /* Set the text color */
+			padding: 10px; /* Add some space inside the div */
+			background-color: #f2f2f2; /* Set background color */
+			border-radius: 5px; /* Rounded corners */
+			border: 1px solid #ccc; /* Border color */
+		}
+	
+		/* Clear fix for floated elements */
+		.clear {
+			clear: both;
+		}
+	</style>
+	
 
 <!--==============================footer=================================-->
 		<footer>

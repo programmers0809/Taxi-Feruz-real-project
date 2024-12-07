@@ -59,3 +59,21 @@ class BookingModel(models.Model):
         managed = True
         verbose_name = 'Jalb qilish'
         verbose_name_plural = 'Jalb qilishlar'
+ 
+
+class CarouselImage(models.Model):
+    image = models.ImageField(upload_to='carousel_images/')
+    caption = models.CharField(max_length=200, blank=True, null=True)
+
+    def __str__(self):
+        return self.caption if self.caption else f"Image {self.id}"
+    
+
+class ContactModel(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Contact from {self.name}"

@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import CategoryModel, CarModel, BookingModel
+from .models import CategoryModel, CarModel, BookingModel,CarouselImage,ContactModel
 
-admin.site.register([CategoryModel, CarModel, BookingModel])
+admin.site.register([CategoryModel, CarModel, BookingModel,CarouselImage,ContactModel])
 
 
 class BookingAdmin(admin.ModelAdmin):

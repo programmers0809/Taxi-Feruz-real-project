@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import BookingModel
+from .models import BookingModel,CarouselImage,ContactModel
 
 
 class BookingForm(forms.ModelForm):
@@ -17,3 +17,25 @@ class BookingForm(forms.ModelForm):
             'time': forms.TimeInput(attrs={'type': 'time'}),
             'date': forms.DateInput(attrs={'type': 'date'}),
         }
+
+
+
+class CarouselImageForm(forms.ModelForm):
+    class Meta:
+        model = CarouselImage
+        fields = ['image', 'caption']
+
+
+
+
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = ContactModel
+        fields = ['name', 'email', 'message']
+
+    # Add custom validation or additional fields if needed
+    def clean_message(self):
+        message = self.cleaned_data.get('message')
+        if len(message) < 10:
+            raise forms.ValidationError("Message must be at least 10 characters long.")
+        return message
