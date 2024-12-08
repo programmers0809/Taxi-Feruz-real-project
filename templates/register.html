@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #00bcd4, #8e2de2); /* Rangli gradient */
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            background: rgba(255, 255, 255, 0.2); /* Yarim shaffof fon */
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px); /* Blur effekti */
+            width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input {
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0288d1;
+        }
+
+        .form-footer {
+            margin-top: 20px;
+        }
+
+        .form-footer a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-container">
+        <h2>Register</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+        <div class="form-footer">
+            <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+        </div>
+    </div>
+
+</body>
+</html>

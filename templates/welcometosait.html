@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Site</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(120deg, #a1c4fd, #c2e9fb); /* Ko'k va oq rangli fon */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px 60px; /* Ichki bo'shliqni kattalashtirildi */
+            border-radius: 20px;
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.3); /* Soya yanada sezilarli bo'ldi */
+        }
+
+        .container h1 {
+            font-size: 48px; /* Xush kelibsiz matni kattaroq bo'ldi */
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .container img {
+            width: 300px; /* Rasm kattaroq bo'ldi */
+            height: auto;
+            margin-bottom: 30px;
+            border-radius: 15px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* Tugmalar orasidagi bo'shliq kengaydi */
+            margin-top: 30px;
+        }
+
+        .buttons a {
+            text-decoration: none;
+            padding: 15px 30px; /* Tugmalar kattaroq bo'ldi */
+            border-radius: 8px;
+            font-size: 18px; /* Shrifi kattalashtirildi */
+            font-weight: bold;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .login {
+            background: #4CAF50;
+        }
+
+        .login:hover {
+            background: #45a049;
+        }
+
+        .register {
+            background: #FF5733;
+        }
+
+        .register:hover {
+            background: #e64e2e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Xush kelibsiz!</h1>
+        <img src="../static/images/photo_2024-12-07_20-58-29.jpg" alt="Welcome Image">
+        <div class="buttons">
+            <a href="{% url 'login' %}" class="login">Login</a>
+            <a href="{% url 'register' %}" class="register">Register</a>
+        </div>
+    </div>
+</body>
+</html>

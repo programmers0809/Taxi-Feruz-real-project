@@ -77,3 +77,14 @@ class ContactModel(models.Model):
 
     def __str__(self):
         return f"Contact from {self.name}"
+    
+class Service(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to='images/')
+    link = models.URLField(default='#')
+
+    def __str__(self):
+        return self.title
+    
+    
